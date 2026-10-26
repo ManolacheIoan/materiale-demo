@@ -485,13 +485,12 @@ body {
 }
 
 /* ============ Motion ============ */
+/* Doar mișcare, fără opacitate: textul păstrează contrastul AA în orice moment al animației. */
 @keyframes reveal {
   from {
-    opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(28px);
   }
   to {
-    opacity: 1;
     transform: none;
   }
 }
