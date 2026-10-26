@@ -93,6 +93,27 @@ describe("build static", () => {
   });
 });
 
+describe("pagini și navigare", () => {
+  const pages = ["despre-noi", "servicii", "intrebari-frecvente", "contact", "cele-mai-cautate", "catalog"];
+
+  it("paginile noi există și apar în antet și în subsol", () => {
+    for (const page of pages) {
+      expect(existsSync(join(OUT, page, "index.html")), page).toBe(true);
+    }
+    const home = read(join(OUT, "index.html"));
+    const header = home.slice(home.indexOf("<header"), home.indexOf("</header>"));
+    const footer = home.slice(home.indexOf("<footer"), home.indexOf("</footer>"));
+    for (const page of pages) {
+      expect(header, `antet: ${page}`).toContain(`href="/${page}/"`);
+      expect(footer, `subsol: ${page}`).toContain(`href="/${page}/"`);
+    }
+  });
+
+  it("bara „Sună acum” pentru mobil apare pe toate paginile", () => {
+    for (const f of html) expect(read(f), relative(OUT, f)).toMatch(/class="callbar"/);
+  });
+});
+
 describe("căutare în catalog (HTML static)", () => {
   it("are câmp cu etichetă, zonă aria-live și tot catalogul fără JavaScript", () => {
     const s = read(join(OUT, "catalog", "index.html"));

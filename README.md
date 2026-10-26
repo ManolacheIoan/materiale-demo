@@ -74,6 +74,13 @@ de categorie. Starea apare în adresă (`/catalog/?q=pelet&categorie=pelet-si-co
 trimite. Logica este în `lib/search.ts` (testată în `tests/search.test.ts`), interfața în `components/CatalogBrowser.tsx`.
 Fără JavaScript, pagina afișează tot catalogul pe categorii.
 
+## Pagini de conținut
+
+Textele pentru „Despre noi”, „Servicii” (livrare, tăiere la dimensiune, calculul cantităților) și
+„Întrebări frecvente” sunt direct în `app/despre-noi/page.tsx`, `app/servicii/page.tsx` și
+`app/intrebari-frecvente/page.tsx`. Sunt generice și fictive: verificați-le (zonă de livrare, plată, retur) înainte
+de folosirea reală.
+
 ## Redenumirea magazinului
 
 1. `config/site.ts` → constanta **`STORE_NAME`**. Se schimbă peste tot: antet, subsol, titluri de pagini.
@@ -112,12 +119,13 @@ Folosiți doar fotografii proprii sau cu drept de utilizare.
 
 ```
 config/site.ts        nume magazin, telefon, zonă, program
-config/navigation.ts  meniul
+config/navigation.ts  meniul (antet + subsol); `short` = etichetă scurtă în antet
 data/products.ts      categorii și produse
 lib/catalog.ts        funcții: formatare preț/unitate, căutare produs
 lib/images.ts         alegerea imaginii (fotografie sau ilustrație), la build
 components/           antet, subsol, card produs, etichetă preț, hartă schematică etc.
-app/                  pagini: /, /catalog/ (?q=&categorie=), /produs/<slug>/, /cele-mai-cautate/, /contact/
+app/                  pagini: /, /catalog/ (?q=&categorie=), /produs/<slug>/, /cele-mai-cautate/,
+                      /servicii/, /despre-noi/, /intrebari-frecvente/, /contact/
 public/images/        ilustrații categorii
 public/products/      fotografii produse (<slug>.webp|jpg)
 scripts/              check-images.ts (npm run images:check)
@@ -126,7 +134,7 @@ tests/                testul static pe out/
 
 ## Lighthouse (măsurat local pe build)
 
-Performanță 97–100, Accesibilitate 100, Bune practici 100 (mobil și desktop).
+Performanță 95–100, Accesibilitate 100, Bune practici 100 (mobil și desktop, toate tipurile de pagini).
 SEO apare ~60 **intenționat**: paginile au `noindex` (demo privat). Scoaterea `robots` din `app/layout.tsx`
 ridică SEO, dar face site-ul indexabil.
 
