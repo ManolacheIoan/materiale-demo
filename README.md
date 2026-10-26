@@ -41,10 +41,23 @@ Totul se află în **`data/products.ts`** (fișier TypeScript cu tipuri, deci gr
   unit: "sac 40 kg",                     // afișat ca „lei/sac 40 kg”
   description: "…",
   packaging: "Sac de hârtie 40 kg; 35 de saci pe palet.",
+  specs: [                               // opțional: tabelul „Specificații”
+    { label: "Greutate", value: "40 kg / sac" },
+  ],
+  variants: [                            // opțional: „Variante și prețuri” (min. 2, include varianta principală)
+    { label: "Sac 40 kg", price: 36.5, unit: "sac 40 kg" },
+    { label: "Palet 35 de saci (1.400 kg)", price: 1249, unit: "palet 1400 kg" },
+  ],
   top: true,                             // apare la „Cele mai căutate”
   // fotografia: public/products/<slug>.webp (vezi „Fotografii produse”)
 },
 ```
+
+- **Specificații:** 3–5 rânduri scurte (greutate, consum, culoare, utilizare). „Unitate de vânzare” și „Ambalare”
+  se adaugă automat la final.
+- **Variante:** alte ambalări sau dimensiuni, fiecare cu preț și unitate proprii. Testele verifică că lista include
+  varianta principală (același `price` și `unit`) și că paletul iese mai ieftin pe kg decât sacul.
+- **Produse similare:** pagina produsului arată automat alte produse din aceeași categorie.
 
 - **Adăugare:** copiați un obiect existent, schimbați `slug`-ul și câmpurile. Pagina se generează automat.
 - **Ștergere:** ștergeți obiectul.

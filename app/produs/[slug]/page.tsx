@@ -8,7 +8,7 @@ import { PriceTag } from "@/components/PriceTag";
 import { ProductGrid } from "@/components/ProductCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ProductImage } from "@/components/ProductImage";
-import { getCategory, getProduct, products, productsIn } from "@/lib/catalog";
+import { formatPrice, formatUnit, getCategory, getProduct, products, productsIn } from "@/lib/catalog";
 import { withImage, withImages } from "@/lib/images";
 import { catalogHref } from "@/lib/search";
 
@@ -32,6 +32,12 @@ export default async function ProductPage({ params }: Props) {
   const category = getCategory(product.category);
   const related = withImages(productsIn(category.id)).filter((p) => p.slug !== product.slug);
   const weekdays = site.hours[0];
+  const variants = product.variants ?? [];
+  const specRows = [
+    ...(product.specs ?? []),
+    { label: "Unitate de vânzare", value: formatUnit(product.unit).replace(/^lei\//, "") },
+    { label: "Ambalare", value: product.packaging },
+  ];
 
   return (
     <>
@@ -76,16 +82,46 @@ export default async function ProductPage({ params }: Props) {
 
             <p className="product__description">{product.description}</p>
 
-            <dl className="specs">
-              <div>
-                <dt>Unitate de vânzare</dt>
-                <dd>{product.unit.replace(/(\d)\.(\d)/g, "$1,$2")}</dd>
-              </div>
-              <div>
-                <dt>Ambalare</dt>
-                <dd>{product.packaging}</dd>
-              </div>
-            </dl>
+            {variants.length > 1 && (
+              <section className="variants" aria-labelledby="variante">
+                <h2 id="variante" className="product__subheading">
+                  Variante și prețuri
+                </h2>
+                <ul className="variants__list">
+                  {variants.map((v) => {
+                    const main = v.price === product.price && v.unit === product.unit;
+                    return (
+                      <li key={v.label} className={`variant${main ? " variant--main" : ""}`}>
+                        <span className="variant__label">
+                          {v.label}
+                          {main && <span className="variant__tag">Preț afișat sus</span>}
+                        </span>
+                        <span className="variant__price">
+                          <strong>{formatPrice(v.price)}</strong> {formatUnit(v.unit)}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <p className="variants__note">La telefon precizați varianta dorită.</p>
+              </section>
+            )}
+
+            <section aria-labelledby="specificatii">
+              <h2 id="specificatii" className="product__subheading">
+                Specificații
+              </h2>
+              <table className="spec-table">
+                <tbody>
+                  {specRows.map((row) => (
+                    <tr key={row.label}>
+                      <th scope="row">{row.label}</th>
+                      <td>{row.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
 
             <div className="order-box">
               <p className="order-box__title">Comandați la telefon</p>
@@ -106,7 +142,8 @@ export default async function ProductPage({ params }: Props) {
           <div className="container">
             <SectionHeading
               id="similare"
-              title={`Tot din ${category.name.toLowerCase()}`}
+              title="Produse similare"
+              intro={`Tot din categoria ${category.name}.`}
               link={{ href: catalogHref({ categorie: category.id }), label: "Toată categoria" }}
             />
             <ProductGrid products={related.slice(0, 4)} />
