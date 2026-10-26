@@ -1,2 +1,0 @@
-Puneți aici fotografiile produselor (ex.: ciment-42-5.jpg, 4:3, minim 960 × 720 px)
-și completați câmpul `image` din data/products.ts. Vezi README.md.

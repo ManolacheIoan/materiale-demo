@@ -7,9 +7,10 @@ import { ProductGrid } from "@/components/ProductCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { StoreInfo } from "@/components/StoreInfo";
 import { categories, topProducts } from "@/lib/catalog";
+import { withImages } from "@/lib/images";
 
 export default function HomePage() {
-  const top = topProducts().slice(0, 8);
+  const top = withImages(topProducts().slice(0, 8));
   const mosaic = categories.slice(0, 4);
   return (
     <>
@@ -45,7 +46,7 @@ export default function HomePage() {
                 width={480}
                 height={360}
                 sizes="(min-width: 960px) 260px, 45vw"
-                priority={i < 2}
+                loading={i < 2 ? "eager" : "lazy"}
                 className={`hero__tile hero__tile--${i + 1}`}
               />
             ))}

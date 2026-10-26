@@ -3,6 +3,7 @@ import { CategoryFilter } from "@/components/CategoryFilter";
 import { PageHeader } from "@/components/PageHeader";
 import { ProductGrid } from "@/components/ProductCard";
 import { categories, products, productsIn } from "@/lib/catalog";
+import { withImages } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Catalog",
@@ -19,12 +20,12 @@ export default function CatalogPage() {
       />
       <div className="container catalog">
         <CategoryFilter />
-        {categories.map((c) => (
+        {categories.map((c, i) => (
           <section key={c.id} className="catalog__group" aria-labelledby={`cat-${c.id}`}>
             <h2 id={`cat-${c.id}`} className="catalog__heading">
               {c.name}
             </h2>
-            <ProductGrid products={productsIn(c.id)} />
+            <ProductGrid products={withImages(productsIn(c.id))} eagerCount={i === 0 ? 2 : 0} />
           </section>
         ))}
       </div>

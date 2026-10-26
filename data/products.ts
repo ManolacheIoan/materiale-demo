@@ -4,8 +4,8 @@
  * - `price` este prețul final în lei (număr; zecimalele cu punct: 36.5 = 36,50 lei).
  * - `unit` este unitatea de vânzare afișată după „lei/” (ex.: „sac 40 kg” → „lei/sac 40 kg”).
  * - `top: true` pune produsul în „Cele mai căutate produse”.
- * - `image` (opțional) este calea unei fotografii din /public (ex.: "/images/produse/ciment-42-5.jpg").
- *   Fără `image`, se afișează ilustrația categoriei.
+ * - Fotografii: puneți public/products/<slug>.webp (sau .jpg) și apar automat; fără fișier se afișează
+ *   ilustrația categoriei. `image` (opțional) forțează altă cale din /public.
  * - `slug` apare în adresa paginii (/produs/<slug>/) și trebuie să fie unic.
  */
 
@@ -50,6 +50,7 @@ export interface Product {
   description: string;
   packaging: string;
   top: boolean;
+  /** Opțional: altă fotografie decât public/products/<slug>.webp|jpg. */
   image?: string;
 }
 

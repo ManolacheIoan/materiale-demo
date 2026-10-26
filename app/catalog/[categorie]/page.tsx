@@ -4,6 +4,7 @@ import { CategoryFilter } from "@/components/CategoryFilter";
 import { PageHeader } from "@/components/PageHeader";
 import { ProductGrid } from "@/components/ProductCard";
 import { categories, productsIn } from "@/lib/catalog";
+import { withImages } from "@/lib/images";
 
 export const dynamicParams = false;
 
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CategoryPage({ params }: Props) {
   const category = findCategory((await params).categorie);
   if (!category) notFound();
-  const list = productsIn(category.id);
+  const list = withImages(productsIn(category.id));
   return (
     <>
       <PageHeader
@@ -36,7 +37,7 @@ export default async function CategoryPage({ params }: Props) {
       <div className="container catalog">
         <CategoryFilter active={category.id} />
         <h2 className="visually-hidden">Produse</h2>
-        <ProductGrid products={list} />
+        <ProductGrid products={list} eagerCount={2} />
       </div>
     </>
   );
