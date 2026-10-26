@@ -3,6 +3,7 @@ import { CallButton } from "@/components/CallButton";
 import { PageHeader } from "@/components/PageHeader";
 import { ProductGrid } from "@/components/ProductCard";
 import { productsTopFirst } from "@/lib/catalog";
+import { withImages } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Cele mai căutate",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function TopPage() {
-  const all = productsTopFirst();
+  const all = withImages(productsTopFirst());
   const top = all.filter((p) => p.top);
   const rest = all.filter((p) => !p.top);
   return (
@@ -25,7 +26,7 @@ export default function TopPage() {
           <h2 id="top">Top {top.length}</h2>
           <CallButton variant="outline" />
         </div>
-        <ProductGrid products={top} />
+        <ProductGrid products={top} eagerCount={2} />
       </section>
       <section className="container section section--tight" aria-labelledby="restul">
         <h2 id="restul">Restul produselor</h2>

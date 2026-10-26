@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { site } from "@/config/site";
@@ -8,7 +7,10 @@ import { ClockIcon } from "@/components/icons";
 import { PriceTag } from "@/components/PriceTag";
 import { ProductGrid } from "@/components/ProductCard";
 import { SectionHeading } from "@/components/SectionHeading";
-import { getCategory, getProduct, productImage, products, productsIn } from "@/lib/catalog";
+import { ProductImage } from "@/components/ProductImage";
+import { formatPrice, formatUnit, getCategory, getProduct, products, productsIn } from "@/lib/catalog";
+import { withImage, withImages } from "@/lib/images";
+import { catalogHref } from "@/lib/search";
 
 export const dynamicParams = false;
 
@@ -24,11 +26,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProductPage({ params }: Props) {
-  const product = getProduct((await params).slug);
-  if (!product) notFound();
+  const found = getProduct((await params).slug);
+  if (!found) notFound();
+  const product = withImage(found);
   const category = getCategory(product.category);
-  const related = productsIn(category.id).filter((p) => p.slug !== product.slug);
+  const related = withImages(productsIn(category.id)).filter((p) => p.slug !== product.slug);
   const weekdays = site.hours[0];
+  const variants = product.variants ?? [];
+  const specRows = [
+    ...(product.specs ?? []),
+    { label: "Unitate de vânzare", value: formatUnit(product.unit).replace(/^lei\//, "") },
+    { label: "Ambalare", value: product.packaging },
+  ];
 
   return (
     <>
@@ -42,7 +51,7 @@ export default async function ProductPage({ params }: Props) {
               <Link href="/catalog/">Catalog</Link>
             </li>
             <li>
-              <Link href={`/catalog/${category.id}/`}>{category.name}</Link>
+              <Link href={catalogHref({ categorie: category.id })}>{category.name}</Link>
             </li>
             <li>
               <span aria-current="page">{product.name}</span>
@@ -52,21 +61,20 @@ export default async function ProductPage({ params }: Props) {
 
         <div className="product__grid">
           <div className="product__media">
-            <Image
-              src={productImage(product)}
-              alt={product.image ? product.name : `Ilustrație pentru categoria ${category.name}`}
+            <ProductImage
+              product={product}
+              eager
               width={960}
               height={720}
-              sizes="(min-width: 960px) 560px, 100vw"
-              className="product-image"
-              priority
+              sizes="(min-width: 1180px) 560px, (min-width: 960px) 48vw, 100vw"
+              fallbackAlt={`Ilustrație pentru categoria ${category.name}`}
             />
             {product.top && <span className="badge">Printre cele mai căutate</span>}
           </div>
 
           <div className="product__info">
             <p className="product__category">
-              <Link href={`/catalog/${category.id}/`}>{category.name}</Link>
+              <Link href={catalogHref({ categorie: category.id })}>{category.name}</Link>
             </p>
             <h1 className="product__title">{product.name}</h1>
             <PriceTag product={product} size="lg" />
@@ -74,16 +82,46 @@ export default async function ProductPage({ params }: Props) {
 
             <p className="product__description">{product.description}</p>
 
-            <dl className="specs">
-              <div>
-                <dt>Unitate de vânzare</dt>
-                <dd>{product.unit.replace(/(\d)\.(\d)/g, "$1,$2")}</dd>
-              </div>
-              <div>
-                <dt>Ambalare</dt>
-                <dd>{product.packaging}</dd>
-              </div>
-            </dl>
+            {variants.length > 1 && (
+              <section className="variants" aria-labelledby="variante">
+                <h2 id="variante" className="product__subheading">
+                  Variante și prețuri
+                </h2>
+                <ul className="variants__list">
+                  {variants.map((v) => {
+                    const main = v.price === product.price && v.unit === product.unit;
+                    return (
+                      <li key={v.label} className={`variant${main ? " variant--main" : ""}`}>
+                        <span className="variant__label">
+                          {v.label}
+                          {main && <span className="variant__tag">Preț afișat sus</span>}
+                        </span>
+                        <span className="variant__price">
+                          <strong>{formatPrice(v.price)}</strong> {formatUnit(v.unit)}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <p className="variants__note">La telefon precizați varianta dorită.</p>
+              </section>
+            )}
+
+            <section aria-labelledby="specificatii">
+              <h2 id="specificatii" className="product__subheading">
+                Specificații
+              </h2>
+              <table className="spec-table">
+                <tbody>
+                  {specRows.map((row) => (
+                    <tr key={row.label}>
+                      <th scope="row">{row.label}</th>
+                      <td>{row.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
 
             <div className="order-box">
               <p className="order-box__title">Comandați la telefon</p>
@@ -104,8 +142,9 @@ export default async function ProductPage({ params }: Props) {
           <div className="container">
             <SectionHeading
               id="similare"
-              title={`Tot din ${category.name.toLowerCase()}`}
-              link={{ href: `/catalog/${category.id}/`, label: "Toată categoria" }}
+              title="Produse similare"
+              intro={`Tot din categoria ${category.name}.`}
+              link={{ href: catalogHref({ categorie: category.id }), label: "Toată categoria" }}
             />
             <ProductGrid products={related.slice(0, 4)} />
           </div>
