@@ -19,8 +19,9 @@ export function NavLinks() {
             href={item.href}
             className="nav__link"
             aria-current={isActive(pathname, item.href) ? "page" : undefined}
+            aria-label={item.short ? item.label : undefined}
           >
-            {item.label}
+            {item.short ?? item.label}
           </Link>
         </li>
       ))}
