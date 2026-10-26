@@ -42,9 +42,5 @@ export function productsTopFirst(): Product[] {
   return [...products.filter((p) => p.top), ...products.filter((p) => !p.top)];
 }
 
-/** Fotografia produsului dacă există, altfel ilustrația categoriei. */
-export function productImage(product: Product): string {
-  return product.image ?? getCategory(product.category).illustration;
-}
 
 export { categories, products };

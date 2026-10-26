@@ -1,15 +1,17 @@
 import Link from "next/link";
-import type { Product } from "@/data/products";
 import { getCategory } from "@/lib/catalog";
+import type { ProductWithImage } from "@/lib/images";
 import { PriceTag } from "./PriceTag";
 import { ProductImage } from "./ProductImage";
 
-export function ProductCard({ product, headingLevel = 3 }: { product: Product; headingLevel?: 2 | 3 }) {
+type CardProps = { product: ProductWithImage; headingLevel?: 2 | 3; eager?: boolean };
+
+export function ProductCard({ product, headingLevel = 3, eager = false }: CardProps) {
   const Heading = `h${headingLevel}` as const;
   return (
     <article className="card product-card reveal">
       <div className="product-card__media">
-        <ProductImage product={product} />
+        <ProductImage product={product} eager={eager} />
         {product.top && <span className="badge">Căutat</span>}
       </div>
       <div className="product-card__body">
@@ -25,12 +27,19 @@ export function ProductCard({ product, headingLevel = 3 }: { product: Product; h
   );
 }
 
-export function ProductGrid({ products, headingLevel }: { products: Product[]; headingLevel?: 2 | 3 }) {
+type GridProps = {
+  products: ProductWithImage[];
+  headingLevel?: 2 | 3;
+  /** Câte carduri de la început se încarcă imediat (vizibile fără derulare). */
+  eagerCount?: number;
+};
+
+export function ProductGrid({ products, headingLevel, eagerCount = 0 }: GridProps) {
   return (
     <ul className="product-grid">
-      {products.map((p) => (
+      {products.map((p, i) => (
         <li key={p.slug}>
-          <ProductCard product={p} headingLevel={headingLevel} />
+          <ProductCard product={p} headingLevel={headingLevel} eager={i < eagerCount} />
         </li>
       ))}
     </ul>

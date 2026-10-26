@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { site } from "@/config/site";
@@ -8,7 +7,9 @@ import { ClockIcon } from "@/components/icons";
 import { PriceTag } from "@/components/PriceTag";
 import { ProductGrid } from "@/components/ProductCard";
 import { SectionHeading } from "@/components/SectionHeading";
-import { getCategory, getProduct, productImage, products, productsIn } from "@/lib/catalog";
+import { ProductImage } from "@/components/ProductImage";
+import { getCategory, getProduct, products, productsIn } from "@/lib/catalog";
+import { withImage, withImages } from "@/lib/images";
 
 export const dynamicParams = false;
 
@@ -24,10 +25,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProductPage({ params }: Props) {
-  const product = getProduct((await params).slug);
-  if (!product) notFound();
+  const found = getProduct((await params).slug);
+  if (!found) notFound();
+  const product = withImage(found);
   const category = getCategory(product.category);
-  const related = productsIn(category.id).filter((p) => p.slug !== product.slug);
+  const related = withImages(productsIn(category.id)).filter((p) => p.slug !== product.slug);
   const weekdays = site.hours[0];
 
   return (
@@ -52,14 +54,13 @@ export default async function ProductPage({ params }: Props) {
 
         <div className="product__grid">
           <div className="product__media">
-            <Image
-              src={productImage(product)}
-              alt={product.image ? product.name : `Ilustrație pentru categoria ${category.name}`}
+            <ProductImage
+              product={product}
+              eager
               width={960}
               height={720}
-              sizes="(min-width: 960px) 560px, 100vw"
-              className="product-image"
-              priority
+              sizes="(min-width: 1180px) 560px, (min-width: 960px) 48vw, 100vw"
+              fallbackAlt={`Ilustrație pentru categoria ${category.name}`}
             />
             {product.top && <span className="badge">Printre cele mai căutate</span>}
           </div>
