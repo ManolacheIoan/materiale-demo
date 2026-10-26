@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Saci de ciment"><title>Ciment și var</title><rect width="480" height="360" fill="#F6F3EF"/><g fill="#E8E0D6"><circle cx="40" cy="40" r="2"/><circle cx="70" cy="40" r="2"/><circle cx="100" cy="40" r="2"/><circle cx="40" cy="70" r="2"/><circle cx="70" cy="70" r="2"/><circle cx="40" cy="100" r="2"/></g><rect y="282" width="480" height="78" fill="#EDE5DB"/><rect y="282" width="480" height="3" fill="#E2D8CC"/>
+<ellipse cx="240" cy="292" rx="170" ry="14" fill="#1D1D1D" opacity=".08"/>
+<g>
+<path d="M92 228c0-8 6-14 14-14h132c8 0 14 6 14 14v50c0 8-6 14-14 14H106c-8 0-14-6-14-14z" fill="#E6D5BA"/>
+<rect x="92" y="236" width="160" height="16" fill="#8B1E1E"/>
+<rect x="138" y="258" width="68" height="20" rx="3" fill="#FFF"/><rect x="146" y="265" width="40" height="5" rx="2" fill="#1F3FA3"/>
+<path d="M232 228c0-8 6-14 14-14h132c8 0 14 6 14 14v50c0 8-6 14-14 14H246c-8 0-14-6-14-14z" fill="#DDC9AA"/>
+<rect x="232" y="236" width="160" height="16" fill="#8B1E1E"/>
+<rect x="278" y="258" width="68" height="20" rx="3" fill="#FFF"/><rect x="286" y="265" width="40" height="5" rx="2" fill="#1F3FA3"/>
+<path d="M162 154c0-8 6-14 14-14h132c8 0 14 6 14 14v50c0 8-6 14-14 14H176c-8 0-14-6-14-14z" fill="#EADBC3"/>
+<rect x="162" y="162" width="160" height="16" fill="#8B1E1E"/>
+<rect x="208" y="184" width="68" height="20" rx="3" fill="#FFF"/><rect x="216" y="191" width="40" height="5" rx="2" fill="#1F3FA3"/>
+<path d="M118 214h12M258 214h12M188 140h12M258 140h12" stroke="#C7B08C" stroke-width="3" stroke-linecap="round"/>
+</g>
+<path d="M360 110l14-8 14 8-14 8z" fill="#FFF" stroke="#E2D8CC" stroke-width="2"/>
+<circle cx="398" cy="86" r="5" fill="#1F3FA3" opacity=".35"/><circle cx="414" cy="104" r="3" fill="#8B1E1E" opacity=".35"/>
+</svg>

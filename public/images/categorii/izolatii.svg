@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Plăci de polistiren și rolă de plasă"><title>Izolații</title><rect width="480" height="360" fill="#F6F3EF"/><g fill="#E8E0D6"><circle cx="40" cy="40" r="2"/><circle cx="70" cy="40" r="2"/><circle cx="100" cy="40" r="2"/><circle cx="40" cy="70" r="2"/><circle cx="70" cy="70" r="2"/><circle cx="40" cy="100" r="2"/></g><rect y="282" width="480" height="78" fill="#EDE5DB"/><rect y="282" width="480" height="3" fill="#E2D8CC"/>
+<ellipse cx="240" cy="292" rx="175" ry="14" fill="#1D1D1D" opacity=".08"/>
+<g>
+<path d="M70 248l150-34 110 30-150 36z" fill="#FFF"/><path d="M70 248v24l110 34v-26z" fill="#E9EDF7"/><path d="M180 280v26l150-36v-26z" fill="#DCE2F2"/>
+<path d="M70 218l150-34 110 30-150 36z" fill="#FFF"/><path d="M70 218v24l110 34v-26z" fill="#E9EDF7"/><path d="M180 250v26l150-36v-26z" fill="#DCE2F2"/>
+<path d="M70 188l150-34 110 30-150 36z" fill="#FFF"/><path d="M70 188v24l110 34v-26z" fill="#E9EDF7"/><path d="M180 220v26l150-36v-26z" fill="#DCE2F2"/>
+<g fill="#C9D3F0"><circle cx="160" cy="186" r="2.5"/><circle cx="196" cy="180" r="2.5"/><circle cx="230" cy="190" r="2.5"/><circle cx="182" cy="200" r="2.5"/><circle cx="252" cy="182" r="2.5"/><circle cx="140" cy="196" r="2.5"/></g>
+<path d="M120 192l140-30" stroke="#8B1E1E" stroke-width="5" stroke-linecap="round" opacity=".85"/>
+</g>
+<g>
+<rect x="352" y="150" width="62" height="136" rx="6" fill="#F4E6E3"/>
+<path d="M352 170h62M352 194h62M352 218h62M352 242h62M352 266h62M372 150v136M394 150v136" stroke="#8B1E1E" stroke-width="2" opacity=".55"/>
+<ellipse cx="383" cy="150" rx="31" ry="9" fill="#FFF" stroke="#8B1E1E" stroke-width="2" opacity=".9"/>
+<ellipse cx="383" cy="150" rx="9" ry="3" fill="#8B1E1E"/>
+</g>
+</svg>
