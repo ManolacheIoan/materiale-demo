@@ -236,8 +236,7 @@ a:hover {
 
 /* ============ Header ============ */
 .site-header {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 50;
   background: var(--white);
   border-bottom: 1px solid var(--line);
@@ -310,6 +309,11 @@ a:hover {
   color: var(--burgundy);
   border-bottom-color: var(--burgundy);
 }
+@media (max-width: 420px) {
+  .nav__link {
+    padding-inline: 0.55rem;
+  }
+}
 @media (max-width: 380px) {
   .logo {
     font-size: 1.125rem;
@@ -324,6 +328,10 @@ a:hover {
   }
 }
 @media (min-width: 960px) {
+  .site-header {
+    position: sticky;
+    top: 0;
+  }
   .site-header__main {
     grid-template-columns: auto 1fr auto;
     grid-template-areas: "brand nav call";
@@ -985,16 +993,16 @@ main:focus {
 }
 .filter {
   position: sticky;
-  top: var(--filter-top, 118px);
+  top: var(--filter-top, 0px);
   z-index: 10;
   margin: 0 calc(var(--space-4) * -1) var(--space-6);
   padding: var(--space-2) 0;
-  background: rgb(255 255 255 / 0.95);
+  background: var(--white);
   border-bottom: 1px solid var(--line);
 }
 @media (min-width: 960px) {
   .filter {
-    --filter-top: 99px;
+    --filter-top: 109px;
     margin-inline: 0;
   }
 }
@@ -1083,7 +1091,7 @@ main:focus {
   }
   .product__media {
     position: sticky;
-    top: 130px;
+    top: 140px;
   }
 }
 .product__media {
