@@ -149,3 +149,26 @@ a:hover {
   top: var(--space-2);
   color: var(--white);
 }
+
+/* ============ Logo ============ */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: 800;
+  font-size: 1.3125rem;
+  letter-spacing: -0.015em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.logo__first {
+  color: var(--burgundy);
+}
+.logo__rest {
+  color: var(--blue);
+  font-weight: 650;
+}
+.logo--dark .logo__first,
+.logo--dark .logo__rest {
+  color: var(--on-dark);
+}
