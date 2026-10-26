@@ -10,6 +10,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { ProductImage } from "@/components/ProductImage";
 import { getCategory, getProduct, products, productsIn } from "@/lib/catalog";
 import { withImage, withImages } from "@/lib/images";
+import { catalogHref } from "@/lib/search";
 
 export const dynamicParams = false;
 
@@ -44,7 +45,7 @@ export default async function ProductPage({ params }: Props) {
               <Link href="/catalog/">Catalog</Link>
             </li>
             <li>
-              <Link href={`/catalog/${category.id}/`}>{category.name}</Link>
+              <Link href={catalogHref({ categorie: category.id })}>{category.name}</Link>
             </li>
             <li>
               <span aria-current="page">{product.name}</span>
@@ -67,7 +68,7 @@ export default async function ProductPage({ params }: Props) {
 
           <div className="product__info">
             <p className="product__category">
-              <Link href={`/catalog/${category.id}/`}>{category.name}</Link>
+              <Link href={catalogHref({ categorie: category.id })}>{category.name}</Link>
             </p>
             <h1 className="product__title">{product.name}</h1>
             <PriceTag product={product} size="lg" />
@@ -106,7 +107,7 @@ export default async function ProductPage({ params }: Props) {
             <SectionHeading
               id="similare"
               title={`Tot din ${category.name.toLowerCase()}`}
-              link={{ href: `/catalog/${category.id}/`, label: "Toată categoria" }}
+              link={{ href: catalogHref({ categorie: category.id }), label: "Toată categoria" }}
             />
             <ProductGrid products={related.slice(0, 4)} />
           </div>

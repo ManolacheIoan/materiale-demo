@@ -54,6 +54,13 @@ Totul se află în **`data/products.ts`** (fișier TypeScript cu tipuri, deci gr
 - **Top:** `top: true` / `false`. Pe pagina „Cele mai căutate”, produsele de top apar primele, în ordinea din fișier.
 - **Categorii:** lista `categories` din același fișier (nume, descriere scurtă, ilustrație).
 
+## Căutare în catalog
+
+Pagina `/catalog/` are căutare după nume și descriere (fără diacritice: „usa” găsește „ușă”), combinată cu filtrul
+de categorie. Starea apare în adresă (`/catalog/?q=pelet&categorie=pelet-si-combustibil`), deci linkurile se pot
+trimite. Logica este în `lib/search.ts` (testată în `tests/search.test.ts`), interfața în `components/CatalogBrowser.tsx`.
+Fără JavaScript, pagina afișează tot catalogul pe categorii.
+
 ## Redenumirea magazinului
 
 1. `config/site.ts` → constanta **`STORE_NAME`**. Se schimbă peste tot: antet, subsol, titluri de pagini.
@@ -97,7 +104,7 @@ data/products.ts      categorii și produse
 lib/catalog.ts        funcții: formatare preț/unitate, căutare produs
 lib/images.ts         alegerea imaginii (fotografie sau ilustrație), la build
 components/           antet, subsol, card produs, etichetă preț, hartă schematică etc.
-app/                  pagini: /, /catalog/, /catalog/<categorie>/, /produs/<slug>/, /cele-mai-cautate/, /contact/
+app/                  pagini: /, /catalog/ (?q=&categorie=), /produs/<slug>/, /cele-mai-cautate/, /contact/
 public/images/        ilustrații categorii
 public/products/      fotografii produse (<slug>.webp|jpg)
 scripts/              check-images.ts (npm run images:check)
