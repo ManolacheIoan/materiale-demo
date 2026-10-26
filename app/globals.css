@@ -1173,3 +1173,19 @@ main:focus {
   font-size: 0.9375rem;
   color: var(--muted);
 }
+
+/* ============ Most searched ============ */
+.section--tight {
+  padding-block: var(--space-6) 0;
+}
+.ranked-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+.ranked-heading h2 {
+  margin: 0;
+}
