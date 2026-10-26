@@ -5,8 +5,8 @@ export function MapPlaceholder() {
   return (
     <figure className="map">
       <svg viewBox="0 0 600 420" role="img" aria-labelledby="map-title map-desc" className="map__svg">
-        <title id="map-title">Hartă schematică {site.city}</title>
-        <desc id="map-desc">Schiță a zonei: {site.area}. Adresa exactă se comunică la telefon.</desc>
+        <title id="map-title">{`Hartă schematică ${site.city}`}</title>
+        <desc id="map-desc">{`Schiță a zonei: ${site.area}. Adresa exactă se comunică la telefon.`}</desc>
         <rect width="600" height="420" fill="#F6F3EF" />
         <g fill="#ECE4D9">
           <rect x="40" y="40" width="120" height="80" rx="6" />
