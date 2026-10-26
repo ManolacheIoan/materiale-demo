@@ -85,6 +85,10 @@ describe("build static", () => {
       expect(s).toContain('href="tel:');
       expect(visibleText(s)).toContain("Sună acum");
       expect(visibleText(s)).toMatch(/\d+,\d{2} lei\//);
+      expect(visibleText(s)).toContain("Specificații");
+      expect(visibleText(s)).toContain("Produse similare");
+      expect(s).toMatch(/<nav aria-label="Breadcrumb">/);
+      if ((p.variants?.length ?? 0) > 1) expect(visibleText(s)).toContain("Variante și prețuri");
     }
   });
 });
