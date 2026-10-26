@@ -1189,3 +1189,53 @@ main:focus {
 .ranked-heading h2 {
   margin: 0;
 }
+
+/* ============ Contact ============ */
+.contact {
+  display: grid;
+  gap: var(--space-5);
+  padding-top: var(--space-6);
+}
+@media (min-width: 960px) {
+  .contact {
+    grid-template-columns: 1fr 1.25fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+}
+.contact__info {
+  display: grid;
+  gap: var(--space-4);
+}
+.contact__title {
+  font-size: 1.1875rem;
+  margin-bottom: var(--space-3);
+}
+.info-card--accent .contact__title {
+  color: var(--white);
+}
+.contact__phone {
+  color: var(--white);
+  text-decoration: none;
+}
+.contact__phone:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+.map {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--white);
+}
+.map__svg {
+  width: 100%;
+  height: auto;
+}
+.map__caption {
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--line);
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
