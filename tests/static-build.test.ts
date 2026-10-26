@@ -89,6 +89,16 @@ describe("build static", () => {
   });
 });
 
+describe("căutare în catalog (HTML static)", () => {
+  it("are câmp cu etichetă, zonă aria-live și tot catalogul fără JavaScript", () => {
+    const s = read(join(OUT, "catalog", "index.html"));
+    expect(s).toMatch(/<label[^>]*for="([^"]+)"[^>]*>Caută în catalog<\/label>/);
+    expect(s).toMatch(/role="search"/);
+    expect(s).toMatch(/role="status" aria-live="polite"/);
+    expect(s.match(/class="card product-card/g)).toHaveLength(products.length);
+  });
+});
+
 describe("date produse", () => {
   it("slug-uri unice și prețuri pozitive", () => {
     expect(new Set(products.map((p) => p.slug)).size).toBe(products.length);

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { CategoryFilter } from "@/components/CategoryFilter";
+import { CatalogBrowser } from "@/components/CatalogBrowser";
 import { PageHeader } from "@/components/PageHeader";
-import { ProductGrid } from "@/components/ProductCard";
-import { categories, products, productsIn } from "@/lib/catalog";
+import { categories, products } from "@/lib/catalog";
 import { withImages } from "@/lib/images";
 
 export const metadata: Metadata = {
@@ -16,18 +15,10 @@ export default function CatalogPage() {
       <PageHeader
         crumbs={[{ href: "/", label: "Acasă" }, { label: "Catalog" }]}
         title="Catalog"
-        intro={`${products.length} produse în ${categories.length} categorii. Prețurile sunt finale, cu TVA.`}
+        intro={`${products.length} de produse în ${categories.length} categorii. Prețurile sunt finale, cu TVA.`}
       />
       <div className="container catalog">
-        <CategoryFilter />
-        {categories.map((c, i) => (
-          <section key={c.id} className="catalog__group" aria-labelledby={`cat-${c.id}`}>
-            <h2 id={`cat-${c.id}`} className="catalog__heading">
-              {c.name}
-            </h2>
-            <ProductGrid products={withImages(productsIn(c.id))} eagerCount={i === 0 ? 2 : 0} />
-          </section>
-        ))}
+        <CatalogBrowser products={withImages(products)} />
       </div>
     </>
   );

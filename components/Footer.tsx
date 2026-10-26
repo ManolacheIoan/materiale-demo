@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, STORE_NAME } from "@/config/site";
 import { categories } from "@/data/products";
+import { catalogHref } from "@/lib/search";
 import { Logo } from "./Logo";
 import { navItems } from "@/config/navigation";
 
@@ -39,7 +40,7 @@ export function Footer() {
           <ul className="site-footer__links">
             {categories.map((c) => (
               <li key={c.id}>
-                <Link href={`/catalog/${c.id}/`}>{c.name}</Link>
+                <Link href={catalogHref({ categorie: c.id })}>{c.name}</Link>
               </li>
             ))}
           </ul>
