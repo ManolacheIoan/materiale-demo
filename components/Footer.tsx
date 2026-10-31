@@ -58,6 +58,11 @@ export function Footer() {
           ))}
         </ul>
       </div>
+      <div className="container site-footer__demo">
+        <p>
+          {site.demoNote} Design și dezvoltare: {site.author}.
+        </p>
+      </div>
     </footer>
   );
 }

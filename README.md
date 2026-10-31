@@ -1,11 +1,22 @@
-# Materiale Demo — catalog online (demo)
+# Temelia — catalog online pentru un magazin de materiale de construcții
 
-Site de prezentare pentru un magazin **fictiv** de materiale de construcții din Galați.
-Catalog cu prețuri, fără coș: comenzile se fac doar telefonic.
+Proiect de portofoliu: site de prezentare pentru **Temelia**, un magazin **fictiv** de materiale de
+construcții din Galați. Catalog cu 29 de produse în 7 categorii, prețuri cu TVA, fără coș: comenzile se fac telefonic.
 
-> **Notă internă (nu apare pe site):** numele, telefonul, zona, programul și prețurile sunt fictive.
-> Prețurile sunt estimări realiste pentru piața din România (toamna 2026), afișate pe site ca prețuri finale.
-> Înainte de o utilizare reală, verificați fiecare preț în `data/products.ts`.
+> Magazinul, numele, telefonul, zona, programul și prețurile sunt inventate. Prețurile sunt estimări realiste
+> pentru piața din România (toamna 2026).
+
+## Ce include
+
+- **Catalog cu căutare** fără diacritice („usa” găsește „ușă”), filtru pe categorii și stare în URL
+  (`/catalog/?q=pelet&categorie=pelet-si-combustibil`), deci rezultatele se pot trimite ca link.
+- **Pagini de produs** generate automat: specificații, variante de ambalare cu prețuri, produse similare.
+- **Pagini de conținut:** Despre noi, Servicii, Întrebări frecvente, Contact cu hartă schematică desenată în SVG.
+- **Mobil întâi:** bară fixă „Sună acum”, meniu adaptat, fără scroll orizontal.
+- **Ilustrații SVG proprii** pentru fiecare categorie și un pipeline pentru fotografii reale (`public/products/`).
+- **Accesibilitate și performanță:** Lighthouse 95–100 la performanță, 100 la accesibilitate și bune practici;
+  animațiile respectă `prefers-reduced-motion`.
+- **Teste** (Vitest) pentru căutare, datele produselor, imagini și build-ul static final.
 
 ## Tehnologie
 

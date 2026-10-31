@@ -4,7 +4,7 @@
  */
 
 /** Numele magazinului. Schimbați aici pentru a redenumi tot site-ul. */
-export const STORE_NAME = "Materiale Demo";
+export const STORE_NAME = "Temelia";
 
 export const site = {
   name: STORE_NAME,
@@ -25,4 +25,7 @@ export const site = {
     { days: "Duminică", time: "Închis" },
   ],
   orderNote: "Comenzile se fac doar telefonic.",
+  /** Mențiune afișată în subsol: site-ul este un proiect de portofoliu. */
+  demoNote: "Proiect demonstrativ: magazinul, prețurile și datele de contact sunt fictive.",
+  author: "Ioan Manolache",
 } as const;

@@ -45,6 +45,8 @@
   --space-6: 2rem;
   --space-7: 3rem;
   --space-8: 4.5rem;
+  /* Spațiul vertical al fiecărei secțiuni, identic sus și jos. */
+  --section-y: 3rem;
 
   --radius-sm: 6px;
   --radius: 10px;
@@ -350,7 +352,6 @@ a:hover {
   background: var(--burgundy-dark);
   color: var(--on-dark);
   padding-top: var(--space-7);
-  margin-top: var(--space-8);
 }
 .site-footer a {
   color: var(--on-dark);
@@ -412,6 +413,14 @@ a:hover {
   border-top: 1px solid rgb(246 243 239 / 0.18);
   font-size: 0.9375rem;
   color: var(--on-dark-muted);
+}
+.site-footer__demo {
+  padding-bottom: var(--space-5);
+  font-size: 0.875rem;
+  color: var(--on-dark-muted);
+}
+.site-footer__demo p {
+  margin: 0;
 }
 .site-footer__nav {
   display: flex;
@@ -552,13 +561,17 @@ main:focus {
 .text-link--arrow:hover svg {
   transform: translateX(3px);
 }
-.section {
-  padding-block: var(--space-7);
-}
 @media (min-width: 768px) {
-  .section {
-    padding-block: var(--space-8);
+  :root {
+    --section-y: 4rem;
   }
+}
+.section {
+  padding-block: var(--section-y);
+}
+/* Ultimul bloc din pagină are același spațiu până la subsol. */
+main > :last-child {
+  padding-bottom: var(--section-y);
 }
 .section--band {
   background: var(--paper);
@@ -587,7 +600,7 @@ main:focus {
   overflow: hidden;
   background: var(--paper);
   border-bottom: 1px solid var(--line);
-  padding-block: var(--space-7);
+  padding-block: var(--section-y);
 }
 .hero::before {
   content: "";
@@ -661,9 +674,6 @@ main:focus {
   }
 }
 @media (min-width: 960px) {
-  .hero {
-    padding-block: var(--space-8) calc(var(--space-8) + var(--space-4));
-  }
   .hero__grid {
     grid-template-columns: 1.15fr 1fr;
   }
@@ -956,7 +966,7 @@ main:focus {
 .page-header {
   background: var(--paper);
   border-bottom: 1px solid var(--line);
-  padding-block: var(--space-5) var(--space-6);
+  padding-block: var(--space-6);
 }
 .page-header h1 {
   font-size: clamp(1.875rem, 4.5vw, 2.75rem);
@@ -987,7 +997,7 @@ main:focus {
 
 /* ============ Catalog & filter ============ */
 .catalog {
-  padding-top: var(--space-5);
+  padding-top: var(--space-6);
 }
 .filter {
   position: sticky;
@@ -1078,7 +1088,7 @@ main:focus {
 
 /* ============ Product page ============ */
 .product {
-  padding-block: var(--space-5) var(--space-7);
+  padding-block: var(--space-6) var(--section-y);
 }
 .product__grid {
   display: grid;
