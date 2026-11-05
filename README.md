@@ -5,6 +5,10 @@ construcții din Galați. Catalog cu 29 de produse în 7 categorii, prețuri cu 
 
 ![Pagina principală Temelia](docs/screenshot.webp)
 
+## English summary
+
+Portfolio project: a static website for Temelia, a fictional building materials store in Galați, Romania. It has a catalog of 29 products in 7 categories with VAT-inclusive prices, product search, category filters and product pages with variants. There is no cart: orders are placed by phone. Built with Next.js and TypeScript, tested with Vitest. The site itself is in Romanian.
+
 > Magazinul, numele, telefonul, zona, programul și prețurile sunt inventate. Prețurile sunt estimări realiste
 > pentru piața din România (toamna 2026).
 
