@@ -3,6 +3,8 @@
 Proiect de portofoliu: site de prezentare pentru **Temelia**, un magazin **fictiv** de materiale de
 construcții din Galați. Catalog cu 29 de produse în 7 categorii, prețuri cu TVA, fără coș: comenzile se fac telefonic.
 
+**Live:** [manolacheioan.github.io/materiale-demo](https://manolacheioan.github.io/materiale-demo/)
+
 ![Pagina principală Temelia](docs/screenshot.webp)
 
 ## English summary
