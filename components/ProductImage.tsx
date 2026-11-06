@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ProductWithImage } from "@/lib/images";
+import { withBase } from "@/lib/base-path";
 
 type Props = {
   product: ProductWithImage;
@@ -26,7 +27,7 @@ export function ProductImage({
 }: Props) {
   return (
     <Image
-      src={product.img.src}
+      src={withBase(product.img.src)}
       alt={product.img.isPhoto ? product.name : fallbackAlt}
       width={width}
       height={height}

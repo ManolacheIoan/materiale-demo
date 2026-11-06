@@ -6,6 +6,7 @@ import { CtaBand } from "@/components/CtaBand";
 import { PageHeader } from "@/components/PageHeader";
 import { categories } from "@/lib/catalog";
 import { catalogHref } from "@/lib/search";
+import { withBase } from "@/lib/base-path";
 
 export const metadata: Metadata = {
   title: "Despre noi",
@@ -50,7 +51,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="split__art" aria-hidden="true">
-            <Image src={categories[0].illustration} alt="" width={480} height={360} sizes="(min-width: 960px) 460px, 90vw" />
+            <Image src={withBase(categories[0].illustration)} alt="" width={480} height={360} sizes="(min-width: 960px) 460px, 90vw" />
           </div>
         </section>
 

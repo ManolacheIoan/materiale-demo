@@ -8,6 +8,7 @@ import type { ProductWithImage } from "@/lib/images";
 import { buildQuery, catalogHref, filterProducts, parseQuery, type CatalogQuery } from "@/lib/search";
 import { CallButton } from "./CallButton";
 import { ProductGrid } from "./ProductCard";
+import { withBase } from "@/lib/base-path";
 
 /*
  * Starea căutării se scrie în adresă (?q=&categorie=), deci se poate copia, trimite și păstra la reîncărcare.
@@ -77,7 +78,7 @@ function CatalogView({ products, query, onChange: setQuery }: ViewProps) {
 
   return (
     <>
-      <form role="search" className="search" action="/catalog/" onSubmit={(e) => e.preventDefault()}>
+      <form role="search" className="search" action={withBase("/catalog/")} onSubmit={(e) => e.preventDefault()}>
         <label htmlFor={inputId} className="search__label">
           Caută în catalog
         </label>

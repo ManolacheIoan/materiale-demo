@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { StoreInfo } from "@/components/StoreInfo";
 import { categories, topProducts } from "@/lib/catalog";
 import { withImages } from "@/lib/images";
+import { withBase } from "@/lib/base-path";
 
 export default function HomePage() {
   const top = withImages(topProducts().slice(0, 8));
@@ -41,7 +42,7 @@ export default function HomePage() {
             {mosaic.map((c, i) => (
               <Image
                 key={c.id}
-                src={c.illustration}
+                src={withBase(c.illustration)}
                 alt=""
                 width={480}
                 height={360}

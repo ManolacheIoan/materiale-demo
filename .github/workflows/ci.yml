@@ -2,10 +2,16 @@
 # and unit tests (Vitest).
 name: CI
 
+# On main, a successful run also publishes the site to GitHub Pages.
 on:
   push:
     branches: [main]
   pull_request:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -28,3 +34,23 @@ jobs:
       - run: npm run build
       - run: npm run typecheck
       - run: npx vitest run
+      - name: Build for GitHub Pages (/${{ github.event.repository.name }}/)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: rm -rf out && npm run build
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          path: out
+
+  deploy:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
